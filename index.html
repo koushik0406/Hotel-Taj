@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hotel Taj — Holiday Stay</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="holiday-theme">
+  <div id="snow-container"></div>
+
+  <header class="holiday-header">
+    <div class="brand">
+      <div class="logo">HT</div>
+      <div class="brand-text">
+        <div class="name">Hotel Taj</div>
+        <div class="tag">Holiday Comfort • Warmth • Luxury</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#rooms">Rooms</a>
+      <a href="#services">Services</a>
+      <a href="#restaurant">Restaurant</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button id="themeToggle" class="toggle-btn">Holiday / Default</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Experience a Magical Holiday Stay</h1>
+      <p>Cozy rooms, warm lights, and a festive ambience — book your dream holiday getaway.</p>
+      <a href="#booking" class="accent-btn">Book Now</a>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <section class="hero-card booking-card" id="booking">
+      <h2>Quick Booking</h2>
+
+      <form id="bookingForm">
+        <label>Full Name</label>
+        <input type="text" id="fullName" placeholder="John Doe" required>
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+
+        <div class="row">
+          <div>
+            <label>Check-in</label>
+            <input type="date" id="checkin" required>
+          </div>
+          <div>
+            <label>Check-out</label>
+            <input type="date" id="checkout" required>
+          </div>
+        </div>
+
+        <label>Room Type</label>
+        <select id="roomType">
+          <option>Single — $69</option>
+          <option>Double — $99</option>
+          <option>Deluxe — $149</option>
+        </select>
+
+        <label>Guests</label>
+        <div class="guests">
+          <button type="button" id="decGuests" class="step-btn">−</button>
+          <div id="guestsCount" class="guest-number">1</div>
+          <button type="button" id="incGuests" class="step-btn">+</button>
+        </div>
+
+        <fieldset class="addons">
+          <legend>Add-ons</legend>
+          <label><input type="checkbox" id="spa"> Spa Treatment</label>
+          <label><input type="checkbox" id="breakfast"> Breakfast Included</label>
+          <label><input type="checkbox" id="pickup"> Airport Pickup</label>
+        </fieldset>
+
+        <button type="submit" class="accent-btn">Book Now</button>
+
+        <p id="bookingMessage" class="muted"></p>
+      </form>
+    </section>
+
+    <section class="card" id="rooms">
+      <h3>Our Rooms</h3>
+      <ul class="muted">
+        <li>Single — Cozy & warm (from $69/night)</li>
+        <li>Double — Perfect for families (from $99/night)</li>
+        <li>Deluxe — Luxury + holiday balcony view (from $149/night)</li>
+      </ul>
+    </section>
+
+    <section class="card" id="services">
+      <h3>Holiday Services</h3>
+      <ul class="muted">
+        <li>Festive Dinner Buffet</li>
+        <li>On-site Spa & Massage</li>
+        <li>Holiday Movie Nights</li>
+        <li>Free Parking & WiFi</li>
+      </ul>
+    </section>
+
+    <section class="card" id="restaurant">
+      <h3>Restaurant</h3>
+      <p class="muted">Enjoy our special holiday dinner menu and warm drinks.</p>
+    </section>
+
+    <section class="card" id="contact">
+      <h3>Contact Us</h3>
+      <p class="muted">Phone: (555) 123-4567</p>
+      <p class="muted">Email: hello@hoteltaj.example</p>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Hotel Taj — Holiday Edition
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
