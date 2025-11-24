@@ -1,36 +1,45 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hotel Taj — Holiday Stay</title>
+
+  <!-- Google Fonts: Inter for body, Playfair Display for headings -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body class="holiday-theme">
-  <div id="snow-container"></div>
+  <!-- Snow container (holiday effect) -->
+  <div id="snow-container" aria-hidden="true"></div>
 
-  <header class="holiday-header">
+  <!-- Header -->
+  <header class="holiday-header" role="banner">
     <div class="brand">
-      <div class="logo">HT</div>
+      <div class="logo" aria-hidden="true">HT</div>
       <div class="brand-text">
         <div class="name">Hotel Taj</div>
         <div class="tag">Holiday Comfort • Warmth • Luxury</div>
       </div>
     </div>
 
-    <nav>
+    <nav role="navigation" aria-label="Main navigation" class="main-nav">
       <a href="#rooms">Rooms</a>
       <a href="#services">Services</a>
       <a href="#restaurant">Restaurant</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <button id="themeToggle" class="toggle-btn">Holiday / Default</button>
+    <div class="header-actions">
+      <button id="themeToggle" class="toggle-btn" aria-pressed="true" title="Toggle holiday theme">Holiday / Default</button>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-overlay"></div>
+  <!-- Holiday hero -->
+  <section class="hero" role="region" aria-label="Holiday hero">
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
       <h1>Experience a Magical Holiday Stay</h1>
       <p>Cozy rooms, warm lights, and a festive ambience — book your dream holiday getaway.</p>
@@ -38,67 +47,123 @@
     </div>
   </section>
 
+  <!-- Main content -->
   <main class="container">
 
-    <section class="hero-card booking-card" id="booking">
-      <h2>Quick Booking</h2>
+    <!-- Booking card -->
+    <section class="hero-card booking-card" id="booking" aria-labelledby="bookingHeading">
+      <h2 id="bookingHeading">Quick Booking</h2>
 
-      <form id="bookingForm">
-        <label>Full Name</label>
-        <input type="text" id="fullName" placeholder="John Doe" required>
+      <form id="bookingForm" aria-describedby="bookingDesc">
+        <p id="bookingDesc" class="muted small">Reserve rooms and add-on services. This demo does not process payments.</p>
 
-        <label>Email</label>
-        <input type="email" id="email" placeholder="you@example.com" required>
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
 
         <div class="row">
           <div>
-            <label>Check-in</label>
-            <input type="date" id="checkin" required>
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin" name="checkin" required>
           </div>
           <div>
-            <label>Check-out</label>
-            <input type="date" id="checkout" required>
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout" name="checkout" required>
           </div>
         </div>
 
-        <label>Room Type</label>
-        <select id="roomType">
-          <option>Single — $69</option>
-          <option>Double — $99</option>
-          <option>Deluxe — $149</option>
+        <label for="roomType">Room Type</label>
+        <select id="roomType" name="roomType">
+          <option value="single">Single — $69</option>
+          <option value="double">Double — $99</option>
+          <option value="deluxe">Deluxe — $149</option>
         </select>
 
         <label>Guests</label>
-        <div class="guests">
-          <button type="button" id="decGuests" class="step-btn">−</button>
-          <div id="guestsCount" class="guest-number">1</div>
-          <button type="button" id="incGuests" class="step-btn">+</button>
+        <div class="guests" role="group" aria-label="Guests">
+          <button type="button" id="decGuests" class="step-btn" aria-label="Decrease guests">−</button>
+          <div id="guestsCount" class="guest-number" aria-live="polite">1</div>
+          <button type="button" id="incGuests" class="step-btn" aria-label="Increase guests">+</button>
         </div>
 
-        <fieldset class="addons">
-          <legend>Add-ons</legend>
-          <label><input type="checkbox" id="spa"> Spa Treatment</label>
-          <label><input type="checkbox" id="breakfast"> Breakfast Included</label>
-          <label><input type="checkbox" id="pickup"> Airport Pickup</label>
+        <fieldset class="addons" aria-labelledby="addonsLegend">
+          <legend id="addonsLegend">Add-ons</legend>
+          <label><input type="checkbox" id="spa" name="spa"> Spa Treatment</label>
+          <label><input type="checkbox" id="breakfast" name="breakfast"> Breakfast Included</label>
+          <label><input type="checkbox" id="pickup" name="pickup"> Airport Pickup</label>
         </fieldset>
 
-        <button type="submit" class="accent-btn">Book Now</button>
+        <div class="actions">
+          <button type="button" id="checkAvail" class="accent-btn">Check availability</button>
+          <button type="submit" class="accent-btn">Book Now</button>
+        </div>
 
-        <p id="bookingMessage" class="muted"></p>
+        <p id="bookingMessage" class="muted small" role="status" aria-live="polite"></p>
       </form>
     </section>
 
-    <section class="card" id="rooms">
-      <h3>Our Rooms</h3>
-      <ul class="muted">
-        <li>Single — Cozy & warm (from $69/night)</li>
-        <li>Double — Perfect for families (from $99/night)</li>
-        <li>Deluxe — Luxury + holiday balcony view (from $149/night)</li>
-      </ul>
+    <!-- Rooms & Gallery -->
+    <section class="card" id="rooms" aria-labelledby="roomsHeading">
+      <h3 id="roomsHeading">Our Rooms</h3>
+      <p class="muted">Choose from cozy Single rooms to luxurious Deluxe rooms — see sample images below.</p>
+
+      <!-- Room samples (added sample images: bedroom, bathroom, balcony) -->
+      <div class="room-samples">
+        <div class="room-sample">
+          <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecf4d6a9?q=80&w=900&auto=format&fit=crop" alt="Cozy bedroom with warm lighting">
+          <div class="sample-label">Bedroom — Single</div>
+        </div>
+        <div class="room-sample">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=900&auto=format&fit=crop" alt="Stylish bathroom with tub">
+          <div class="sample-label">Bathroom — Ensuite</div>
+        </div>
+        <div class="room-sample">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=900&auto=format&fit=crop" alt="Balcony view from a deluxe room">
+          <div class="sample-label">Balcony — Deluxe View</div>
+        </div>
+      </div>
+
+      <!-- Room Gallery (thumbnails + lightbox) -->
+      <div id="room-gallery" class="gallery-section" aria-labelledby="galleryHeading">
+        <h4 id="galleryHeading">Room Gallery</h4>
+        <p class="muted small">Click any thumbnail to view larger.</p>
+
+        <div class="gallery-grid" aria-label="Rooms gallery">
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1501117716987-c8e1ecf4d6a9?q=80&w=1400" aria-label="Open bedroom image">
+            <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecf4d6a9?q=80&w=600" alt="Single room with bed and lamp">
+          </button>
+
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1400" aria-label="Open bathroom image">
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=600" alt="Bathroom with elegant fixtures">
+          </button>
+
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1400" aria-label="Open balcony image">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600" alt="Deluxe room with balcony view">
+          </button>
+
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1505691723518-36a1b47c8d66?q=80&w=1400" aria-label="Open lounge image">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a1b47c8d66?q=80&w=600" alt="Hotel lounge area with decorations">
+          </button>
+        </div>
+
+        <!-- Lightbox modal -->
+        <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+          <button id="lbClose" class="lb-close" aria-label="Close image viewer">✕</button>
+          <button id="lbPrev" class="lb-nav lb-prev" aria-label="Previous image">◀</button>
+          <div class="lb-content" role="document">
+            <img id="lbImage" src="" alt="">
+            <div id="lbCaption" class="lb-caption"></div>
+          </div>
+          <button id="lbNext" class="lb-nav lb-next" aria-label="Next image">▶</button>
+        </div>
+      </div>
     </section>
 
-    <section class="card" id="services">
-      <h3>Holiday Services</h3>
+    <!-- Services -->
+    <section class="card" id="services" aria-labelledby="servicesHeading">
+      <h3 id="servicesHeading">Holiday Services</h3>
       <ul class="muted">
         <li>Festive Dinner Buffet</li>
         <li>On-site Spa & Massage</li>
@@ -107,16 +172,52 @@
       </ul>
     </section>
 
-    <section class="card" id="restaurant">
-      <h3>Restaurant</h3>
+    <!-- Restaurant -->
+    <section class="card" id="restaurant" aria-labelledby="restaurantHeading">
+      <h3 id="restaurantHeading">Restaurant</h3>
       <p class="muted">Enjoy our special holiday dinner menu and warm drinks.</p>
     </section>
 
-    <section class="card" id="contact">
-      <h3>Contact Us</h3>
-      <p class="muted">Phone: (555) 123-4567</p>
-      <p class="muted">Email: hello@hoteltaj.example</p>
+    <!-- Contact + small map preview -->
+    <section class="card" id="contact" aria-labelledby="contactHeading">
+      <h3 id="contactHeading">Find Us</h3>
+      <p class="muted">123 Taj Lane, Pleasantville — sample location</p>
+
+      <!-- Map preview -->
+      <div class="map-preview">
+        <div class="map-box" id="mapBox" aria-hidden="false">
+          <iframe
+            id="gmapSmall"
+            title="Hotel Taj location map"
+            src="https://www.google.com/maps?q=28.6139,77.2090&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-describedby="mapDesc"
+          ></iframe>
+        </div>
+
+        <p id="mapDesc" class="muted small">Click the map to open a larger view.</p>
+
+        <div style="margin-top:10px;">
+          <button class="step-btn" id="openMapBtn" aria-controls="mapModal" aria-expanded="false">Open larger map</button>
+        </div>
+      </div>
     </section>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Hotel location map modal">
+      <div class="modal-dialog">
+        <button id="closeMapBtn" class="lb-close" aria-label="Close map">✕</button>
+        <div style="height:70vh;">
+          <iframe
+            id="gmapLarge"
+            title="Hotel Taj full map"
+            src="https://www.google.com/maps?q=28.6139,77.2090&z=15&output=embed"
+            width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="muted small" style="margin-top:8px">Note: This is a sample location. Replace the coordinates for the exact hotel address.</p>
+      </div>
+    </div>
 
   </main>
 
